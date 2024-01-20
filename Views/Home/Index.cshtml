@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Domov";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</head>
+<body style="margin-bottom: 20px">
+
+    <div class="container">
+        <div class=row style="margin-bottom: 30px">
+            <img src="/images/banner.jpg" alt="banner">
+            <h2 class="mytext-nadpis">O nás</h2>
+            <div class="mytext">
+                Spoločnosť Forinal, s.r.o. vznikla združením živnostníkov zaoberajúcich sa nábytkárskou výrobou a službami v interiérovom dizajne.
+                Prevažujúcou činnosťou spoločnosti je výroba a montáž kuchynských liniek,
+                vstavaných skríň, posuvných dverí a montovaných deliacich stien.
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="mytext-nadpis">
+                Produkty
+                <a class="button mytext" asp-controller="Produkt" asp-action="Produkty">Viac info</a>
+            </h2>
+	        <div class="flex-container" style="margin-bottom: 50px">
+                
+		        <img src="/images/kuchyne/kuchyna.jpg" width="400" height="300" alt="kuch1">
+		        <img src="/images/kuchyne/kuchyna2.jpg" width="400" height="300" alt="kuch2">
+		        <img src="/images/kuchyne/kuchyna8.jpg" width="400" height="300" alt="kuch3">
+		        <img src="/images/kuchyne/kuchyna9.jpg" width="400" height="300" alt="kuch4">
+		        <img src="/images/kuchyne/kuchyna5.jpg" width="400" height="300" alt="kuch5">
+		        <img src="/images/obyvacie_izby/obyvacia_izba1.jpg" width="400" height="300" alt="obv_izba1">
+		        <img src="/images/obyvacie_izby/obyvacia_izba2.jpg" width="400" height="300" alt="obv_izba2">
+		        <img src="/images/obyvacie_izby/obyvacia_izba3.jpg" width="400" height="300" alt="obv_izba3">
+		        <img src="/images/obyvacie_izby/obyvacia_izba4.jpg" width="400" height="300" alt="obv_izba4">
+		        <img src="/images/ostatne_viz/ost_1.jpg" width="400" height="300" alt="ost1">
+		        <img src="/images/ostatne_viz/ost_2.jpg" width="400" height="300" alt="ost2">
+		        <img src="/images/ostatne_viz/ost_3.jpg" width="400" height="300" alt="ost3">
+
+	        </div>
+
+            <h2 class="mytext-nadpis">Referencie</h2>
+            <div class="flex-container">
+                <div class="flex-item">"Nádherný vstavaný nábytok, ktorý vyhovuje presne mojim potrebám!" - Peter</div>
+                <div class="flex-item">"Profesionálna výroba a montáž nábytku na mieru, som veľmi spokojný!" - Martin</div>
+                <div class="flex-item">"Vstavaný nábytok odporúčam každému, kto hľadá štýlové a praktické riešenia." - Ján</div>
+                <div class="flex-item">"Skvelý servis a precízna montáž nášho nového nábytku." - Zuzana</div>
+                <div class="flex-item">"Náš nový vstavaný nábytok vyzerá úžasne, ďakujeme za vynikajúcu prácu!" - Lukáš</div>
+                <div class="flex-item">"Náš vstavaný nábytok je teraz stredobodom našej domácnosti, sme nadšené!" - Veronika </div>
+                <div class="flex-item">"Vstavaný nábytok na mieru dodal našej domácnosti elegantný a praktický šmrnc." - Monika</div>
+                <div class="flex-item">"Kvalita výroby vstavaného nábytku je úžasná, vrelo odporúčam." - Juraj</div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+</body>

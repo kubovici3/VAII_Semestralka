@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Plosny_material>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Plošne materialy";
+	int index = 1;
+
+}
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<main class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 style="margin-bottom: 20px">Plošné materiály</h2>
+                <h3 style="margin-bottom: 20px">UNI Farby</h3>
+                <table class="table">
+	                <tr>
+                        @foreach (var material in @Model)
+                        {
+	                        <td><a href="@material.Obrazok" target="_blank"><img class="rounded-table-item" src="@material.Obrazok" alt="material " + @index.ToString()></a></td>
+	                        index++;
+                        }
+
+	                </tr>
+
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+</body>
