@@ -1,0 +1,51 @@
+﻿@model UpravaViewModel
+
+<h1>Upravit údaje</h1>
+
+<form asp-action="SpravaUdajov" method="post">
+	<div class="form-group">
+		<label asp-for="Meno"></label>
+		<input asp-for="Meno" class="form-control" />
+		<span asp-validation-for="Meno" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Email"></label>
+		<input asp-for="Email" class="form-control"  />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="StareHeslo"></label>
+		<input asp-for="StareHeslo" class="form-control" />
+		<span asp-validation-for="StareHeslo" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="NoveHeslo"></label>
+		<input asp-for="NoveHeslo" class="form-control" />
+		<span asp-validation-for="NoveHeslo" class="text-danger"></span>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Upravit údaje</button>
+	<button type="button" class="btn btn-danger" id="btnOdstranitUcet">Odstrániť účet</button>
+
+</form>
+
+<script>
+	document.getElementById('btnOdstranitUcet').addEventListener('click', function () {
+		var confirmation = confirm('Naozaj chcete odstránit účet?');
+		if (confirmation) {
+			var xmlRequest = new XMLHttpRequest();
+			xmlRequest.open('DELETE', '/Ucet/OdstranitUcet', true);
+			xmlRequest.setRequestHeader('Content-Type', 'application/json');
+
+			xmlRequest.onload = function () {
+				if (xmlRequest.status === 200) {
+					alert('Účet bol úspešne odstraneny.');
+				} else {
+					alert('Chyba pri odstranovani účtu: ' + xmlRequest.responseText);
+				}
+			};
+
+			xmlRequest.send();
+		}
+	});
+</script>

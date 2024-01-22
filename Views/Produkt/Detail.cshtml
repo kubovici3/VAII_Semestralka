@@ -1,0 +1,42 @@
+﻿@model Produkt
+
+<div class="row">
+	<div class="col-md-6">
+		<img src="@Model.Obrazok" class="rounded-image-detail" alt="@Model.Opis" />	//zmenit image style v css
+	</div>
+	<div class="col-md-6">
+		<h2>@Model.Typ</h2>
+		<p>Kategória: @Model.Typ</p>
+		<p>Popis: @Model.Opis</p>
+		<p>Material: @Model.MaterialID</p>
+
+		<p>Dátum vytvorenia: @Model.UdajeProduktu.CasVytvorenia.ToString("dd.MM.yyyy HH:mm:ss")</p>
+		<p>Dátum poslednej zmeny: @Model.UdajeProduktu.CasPoslednejZmeny.ToString("dd.MM.yyyy HH:mm:ss")</p>
+	
+	</div>
+	
+	<a asp-controller="Produkt" asp-action="Uprav" asp-route-id="@Model.Id" class="btn btn-primary">Upravit dáta</a>
+
+    <button type="button" class="btn btn-danger" id="btnOdstranitProdukt"> Vymazat produkt</button>
+</div>
+
+<script>
+    document.getElementById('btnOdstranitProdukt').addEventListener('click', function () {
+        var confirmation = confirm('Naozaj chcete odstránit produkt?');
+        if (confirmation) {
+            var xmlRequest = new XMLHttpRequest();
+            xmlRequest.open('DELETE', '/Produkt/Vymaz', true);
+            xmlRequest.setRequestHeader('Content-Type', 'application/json');
+
+            xmlRequest.onload = function () {
+                if (xmlRequest.status === 200) {
+                    alert('Produkt bol úspešne odstránený.');
+                } else {
+                    alert('Chyba pri odstranovani produktu: ' + xmlRequest.responseText);
+                }
+            };
+
+            xmlRequest.send();
+        }
+    });
+</script>

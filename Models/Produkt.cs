@@ -16,6 +16,7 @@ namespace VAII_Semestralka.Models
         public string Obrazok { get; set; }
         [Required]
         public string MaterialID { get; set; }
+        public Udaje UdajeProduktu { get; set; }
 
-    }
+	}
 }

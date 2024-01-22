@@ -29,6 +29,26 @@
 						<a class="nav-link text-dark" asp-controller="Plosny_material" asp-action="Plosne_materialy">PLOŠNÉ MATERIÁLY</a>
 					</li>
 				</ul>
+				<ul class="navbar-nav">
+					@if (User.Identity.IsAuthenticated)
+					{
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-controller="Ucet" asp-action="SpravaUdajov">Účet</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-controller="Ucet" asp-action="Odhlasenie">Odhlásit sa</a>
+						</li>
+					}
+					else
+					{
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-controller="Ucet" asp-action="Prihlasenie">Prihlásit sa</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link text-dark" asp-controller="Ucet" asp-action="Registracia">Registrovat sa</a>
+						</li>
+					}
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -41,7 +61,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - VAII_Semestralka - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - VAII_Semestralka - <a asp-area="" asp-controller="Home">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Produkt>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Produkt>
+@inject SignInManager<IdentityUser> SignInManager
+
 
 @*
 *@
@@ -29,78 +32,88 @@
 </head>
 <body>
 <main class="container my-4">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="my-4">Kuchyne</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-	            <table class="table">
-                    <tr>
-						@foreach (var kuchyna in queryKuchyne)
-						{
-							<td>
-								<a href=@kuchyna.Obrazok target="_blank">
-                                    <img class="rounded-image" src=@kuchyna.Obrazok alt=@kuchyna.Opis>
-								</a>
-							</td>
-						}
-                    </tr>
-	            </table>
-            </div>
-        </div>
+	<div class="row">
+		<div class="col-12 text-start">
+			@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+			{
+				<a href="/Produkt/Vytvor" class="btn btn-primary">Vytvořit produkt</a>
+			}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<h2 class="my-4">Kuchyne</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<table class="table">
+				<tr>
+					@foreach (var kuchyna in queryKuchyne)
+					{
+						<td>
+							<a href="/Produkt/Detail?id=@kuchyna.Id" target="_self">
+								<img class="rounded-image" src="@kuchyna.Obrazok" alt="@kuchyna.Opis">
+							</a>
+						</td>
+					}
+				</tr>
+			</table>
+		</div>
+	</div>
 
 
-        <div class="row">
-            <div class="col-12">
-                <h2 class="my-4">Obývacie izby </h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <table class="table">
-                    <tr>
-	                    @foreach (var obyvacka in queryKObyvacka)
-	                    {
-		                    <td>
-                                <a href=@obyvacka.Obrazok target="_blank">
-                                    <img class="rounded-image" src=@obyvacka.Obrazok alt=@obyvacka.Opis>
-			                    </a>
-		                    </td>
-	                    }
-                    </tr>
-                   
-                </table>
-            </div>
-        </div>
+	<div class="row">
+		<div class="col-12">
+			<h2 class="my-4">Obývacie izby </h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<table class="table">
+				<tr>
+					@foreach (var obyvacka in queryKObyvacka)
+					{
+						<td>
+								<a href="/Produkt/Detail?id=@obyvacka.Id" target="_blank">
+								<img class="rounded-image" src=@obyvacka.Obrazok alt=@obyvacka.Opis>
+							</a>
+						</td>
+					}
+				</tr>
 
-        <div class="row">
-            <div class="col-12">
-                <h2 class="my-4">Pracovne</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <table class="table">
-	                <tr>
-		                @foreach (var pracovna in queryPracovna)
-		                {
-			                <td>
-                                <a href=@pracovna.Obrazok target="_blank">
-                                    <img class="rounded-image" src=@pracovna.Obrazok alt=@pracovna.Opis>
-				                </a>
-			                </td>
-		                }
-	                </tr>
-                </table>
-            </div>
-        </div>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<h2 class="my-4">Pracovne</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<table class="table">
+				<tr>
+					@foreach (var pracovna in queryPracovna)
+					{
+						<td>
+								<a href="/Produkt/Detail?id=@pracovna.Id" target="_blank">
+								<img class="rounded-image" src=@pracovna.Obrazok alt=@pracovna.Opis>
+							</a>
+						</td>
+					}
+				</tr>
+			</table>
+		</div>
+	</div>
 
 
 </main>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
 
 </body>
+
+
