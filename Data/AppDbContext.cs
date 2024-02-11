@@ -16,5 +16,6 @@ namespace VAII_Semestralka.Data
         public DbSet<Plosny_material> Materialy { get; set; }
         public DbSet<Udaje> Udaje { get; set; } 
         public DbSet<IdentityUser> Pouzivatel { get; set; }
+        public  DbSet<Rezervacia> Rezervacia { get; set; }
     }
 }

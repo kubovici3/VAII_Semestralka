@@ -280,6 +280,27 @@ namespace VAII_Semestralka.Migrations
                     b.ToTable("Produkty");
                 });
 
+            modelBuilder.Entity("VAII_Semestralka.Models.Rezervacia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Meno")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Popis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rezervacia");
+                });
+
             modelBuilder.Entity("VAII_Semestralka.Models.Udaje", b =>
                 {
                     b.Property<int>("Id")

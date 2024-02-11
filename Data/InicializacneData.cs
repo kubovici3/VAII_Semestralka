@@ -282,6 +282,24 @@ namespace VAII_Semestralka.Data
 
 				}
 			};
+			var rezervacie = new List<Rezervacia>()
+			{
+				new Rezervacia()
+				{
+					Meno = "Jano11",
+					Popis="Je to super"
+				},
+				new Rezervacia()
+				{
+				Meno = "Jano12",
+				Popis="Je to mega"
+				},
+				new Rezervacia()
+				{
+					Meno = "Jano11",
+					Popis="Je to bomba"
+				}
+			};
 
 
 			if (!dbContext.Produkty.Any())
@@ -295,8 +313,14 @@ namespace VAII_Semestralka.Data
 				dbContext.Materialy.AddRange(plosneMaterialy);
 				dbContext.SaveChanges();
 			}
+			if (!dbContext.Rezervacia.Any())
+			{
+				dbContext.Rezervacia.AddRange(rezervacie);
+				dbContext.SaveChanges();
+			}
 
 		}
+
 
 		private static void InicializujRole(RoleManager<IdentityRole> roleManager)
 		{

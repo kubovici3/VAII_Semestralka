@@ -51,6 +51,20 @@ namespace VAII_Semestralka.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rezervacia",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Popis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Meno = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rezervacia", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Udaje",
                 columns: table => new
                 {
@@ -294,6 +308,9 @@ namespace VAII_Semestralka.Migrations
 
             migrationBuilder.DropTable(
                 name: "Materialy");
+
+            migrationBuilder.DropTable(
+                name: "Rezervacia");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
