@@ -26,15 +26,17 @@ namespace VAII_Semestralka.Controllers
         [HttpGet]
         [Authorize(Roles = "Admin")]
 		public IActionResult Vytvor()
-        {
-            return View();
+		{
+			var novyProdukt = new Produkt();
+			novyProdukt.Plosne_materialy = _context.Materialy.ToList();
+            return View(novyProdukt);
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public IActionResult Vytvor(Produkt produkt)
         {
 
-			string upravenyObrazok = "images/" + produkt.Typ + "/" + produkt.Obrazok;
+			string upravenyObrazok = "/images/" + produkt.Typ + "/" + produkt.Obrazok;
             produkt.Obrazok = upravenyObrazok;
 
             if (ModelState.IsValid)
@@ -47,9 +49,9 @@ namespace VAII_Semestralka.Controllers
 	        return View();
         }
 
-		[HttpDelete]
+		[HttpGet]
 		[Authorize(Roles = "Admin")]
-		public IActionResult Vymaz(int id)
+		public IActionResult Vymaz(int id)	
 		{
 			 var produkt = _context.Produkty.FirstOrDefault(p => p.Id == id);
 
@@ -61,10 +63,10 @@ namespace VAII_Semestralka.Controllers
 			 _context.Produkty.Remove(produkt);
 			 _context.SaveChanges();
 
-			return RedirectToAction("Produkty");
+			 return RedirectToAction("Produkty");
 		}
 
-        [HttpGet]
+		[HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
@@ -74,6 +76,7 @@ namespace VAII_Semestralka.Controllers
 
             var produkt = await _context.Produkty
                 .Include(p => p.UdajeProduktu)
+                .Include(p=>p.Plosne_materialy)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (produkt == null)
@@ -93,7 +96,7 @@ namespace VAII_Semestralka.Controllers
 	        {
 		        return NotFound();
 	        }
-
+			
 	        return View(produkt);
         }
 
@@ -116,11 +119,12 @@ namespace VAII_Semestralka.Controllers
 			existujuciProdukt.Typ = produkt.Typ;
 			existujuciProdukt.Opis = produkt.Opis;
 			existujuciProdukt.Obrazok = produkt.Obrazok;
-			existujuciProdukt.MaterialID = produkt.MaterialID;
+
+			existujuciProdukt.Plosne_materialy = produkt.Plosne_materialy;
 
 			await _context.SaveChangesAsync();
 
-			return View("Detail");
+			return RedirectToAction("Produkty");
 		}
 
 

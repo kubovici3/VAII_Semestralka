@@ -9,13 +9,13 @@
 	
 	ViewData["Title"] = "Produkty";
 	var queryKuchyne = from kuch in Model
-						where kuch.Typ.ToLower() == "kuchyna"
+						where kuch.Typ == TypProduktu.Kuchyna
 						select kuch;
 	var queryPracovna = from prac in Model
-						where prac.Typ.ToLower() == "pracovna"
+						where prac.Typ == TypProduktu.Pracovna
 						select prac;
 	var queryKObyvacka = from obyvacka in Model
-                         where obyvacka.Typ.ToLower() == "obyvacia_izba"
+                         where obyvacka.Typ == TypProduktu.Obyvacia_izba
                          select obyvacka;
 
 
@@ -36,7 +36,7 @@
 		<div class="col-12 text-start">
 			@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 			{
-				<a href="/Produkt/Vytvor" class="btn btn-primary">Vytvořit produkt</a>
+				<a href="/Produkt/Vytvor" class="btn btn-primary">Vytvorit produkt</a>
 			}
 		</div>
 	</div>
@@ -52,6 +52,7 @@
 					@foreach (var kuchyna in queryKuchyne)
 					{
 						<td>
+							<button class="delete-button" data-id="@kuchyna.Id">X</button>
 							<a href="/Produkt/Detail?id=@kuchyna.Id" target="_self">
 								<img class="rounded-image" src="@kuchyna.Obrazok" alt="@kuchyna.Opis">
 							</a>
@@ -75,7 +76,8 @@
 					@foreach (var obyvacka in queryKObyvacka)
 					{
 						<td>
-								<a href="/Produkt/Detail?id=@obyvacka.Id" target="_blank">
+							<button class="delete-button" data-id="@obyvacka.Id">X</button>
+							<a href="/Produkt/Detail?id=@obyvacka.Id" target="_blank">
 								<img class="rounded-image" src=@obyvacka.Obrazok alt=@obyvacka.Opis>
 							</a>
 						</td>
@@ -98,7 +100,8 @@
 					@foreach (var pracovna in queryPracovna)
 					{
 						<td>
-								<a href="/Produkt/Detail?id=@pracovna.Id" target="_blank">
+							<button class="delete-button" data-id="@pracovna.Id">X</button>
+							<a href="/Produkt/Detail?id=@pracovna.Id" target="_blank">
 								<img class="rounded-image" src=@pracovna.Obrazok alt=@pracovna.Opis>
 							</a>
 						</td>
@@ -115,5 +118,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
 
 </body>
+<script>
+	$(document).ready(function () {
+		$(".delete-button").click(function () {
+			var id = $(this).data("id");
+			var confirmation = confirm("Naozaj chceš odstranit tento produkt?");
+			if (confirmation) {
+				$.ajax({
+					url: "/Produkt/Vymaz",
+					type: "GET",
+					data: { id: id },
+					
+					success: function () {
+						location.reload();
+					},
+					error: function () {
+						alert("Error deleting item.");
+					}
+				});
+			}
+		});
+	});
+</script>
 
 

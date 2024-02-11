@@ -54,12 +54,7 @@ img {
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-.rounded-image {
-    border: 2px solid #000;
-    border-radius: 10px;
-    width: 200px;
-    height: 150px;
-}
+
 .rounded-image-detail {
     border: 2px solid #000;
     border-radius: 10px;
@@ -73,7 +68,35 @@ img {
     height: 170px;
 }
 
+.delete-button {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
 
+
+.table {
+    position: relative;
+}
+
+.table td {
+    position: relative;
+}
+
+.delete-button:hover {
+    background-color: #c00;
+}
+.rounded-image {
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 200px;
+    height: 150px;
+}
 
 
 

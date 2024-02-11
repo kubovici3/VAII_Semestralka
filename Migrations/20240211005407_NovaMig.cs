@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VAII_Semestralka.Migrations
 {
     /// <inheritdoc />
-    public partial class NovaMigracia : Migration
+    public partial class NovaMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -171,36 +171,14 @@ namespace VAII_Semestralka.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Materialy",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Typ = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Obrazok = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UdajeMaterialuId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Materialy", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Materialy_Udaje_UdajeMaterialuId",
-                        column: x => x.UdajeMaterialuId,
-                        principalTable: "Udaje",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Produkty",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Typ = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Typ = table.Column<int>(type: "int", nullable: false),
                     Opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Obrazok = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MaterialID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UdajeProduktuId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -209,6 +187,33 @@ namespace VAII_Semestralka.Migrations
                     table.ForeignKey(
                         name: "FK_Produkty_Udaje_UdajeProduktuId",
                         column: x => x.UdajeProduktuId,
+                        principalTable: "Udaje",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Materialy",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Typ = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Obrazok = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UdajeMaterialuId = table.Column<int>(type: "int", nullable: false),
+                    ProduktId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Materialy", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Materialy_Produkty_ProduktId",
+                        column: x => x.ProduktId,
+                        principalTable: "Produkty",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Materialy_Udaje_UdajeMaterialuId",
+                        column: x => x.UdajeMaterialuId,
                         principalTable: "Udaje",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -254,6 +259,11 @@ namespace VAII_Semestralka.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Materialy_ProduktId",
+                table: "Materialy",
+                column: "ProduktId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Materialy_UdajeMaterialuId",
                 table: "Materialy",
                 column: "UdajeMaterialuId");
@@ -286,13 +296,13 @@ namespace VAII_Semestralka.Migrations
                 name: "Materialy");
 
             migrationBuilder.DropTable(
-                name: "Produkty");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Produkty");
 
             migrationBuilder.DropTable(
                 name: "Udaje");

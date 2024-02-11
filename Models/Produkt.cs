@@ -8,15 +8,16 @@ namespace VAII_Semestralka.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Typ { get; set; }
+        public TypProduktu Typ { get; set; }
 
         [Required]
         public string Opis { get; set; }
         [Required]
         public string Obrazok { get; set; }
         [Required]
-        public string MaterialID { get; set; }
+        public ICollection<Plosny_material> Plosne_materialy { get; set; }
         public Udaje UdajeProduktu { get; set; }
+
 
 	}
 }

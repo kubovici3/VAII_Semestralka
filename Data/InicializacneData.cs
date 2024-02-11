@@ -26,152 +26,7 @@ namespace VAII_Semestralka.Data
         {
 	        var dbContext = scopedServiceProvider.GetRequiredService<AppDbContext>();
 
-	        var produkty = new List<Produkt>
-	        {
-		        new Produkt()
-		        {
-			        Typ = "Kuchyna",
-			        Opis = "Parádna kuchyna 1",
-			        Obrazok = "/images/kuchyne/kuchyna.jpg",
-			        MaterialID = 1.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Kuchyna",
-			        Opis = "Parádna kuchyna 2",
-			        Obrazok = "/images/kuchyne/kuchyna2.jpg",
-			        MaterialID = 3.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Kuchyna",
-			        Opis = "Parádna kuchyna 1",
-			        Obrazok = "/images/kuchyne/kuchyna3.jpg",
-			        MaterialID = 2.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Kuchyna",
-			        Opis = "Parádna kuchyna 2",
-			        Obrazok = "/images/kuchyne/kuchyna4.jpg",
-			        MaterialID = 4.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Obyvacia_izba",
-			        Opis = "Parádna Obyvacia izba  1",
-			        Obrazok = "/images/obyvacie_izby/obyvacia_izba1.jpg",
-			        MaterialID = 5.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Obyvacia_izba",
-			        Opis = "Parádna Obyvacia izba 2",
-			        Obrazok = "/images/obyvacie_izby/obyvacia_izba2.jpg",
-			        MaterialID = 2.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Obyvacia_izba",
-			        Opis = "Parádna Obyvacia izba 3",
-			        Obrazok = "/images/obyvacie_izby/obyvacia_izba3.jpg",
-			        MaterialID = 3.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Obyvacia_izba",
-			        Opis = "Parádna Obyvacia izba 4",
-			        Obrazok = "/images/obyvacie_izby/obyvacia_izba4.jpg",
-			        MaterialID = 1.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Pracovna",
-			        Opis = "Parádna pracovna 1",
-			        Obrazok = "/images/pracovne/pracovna1.jpg",
-			        MaterialID = 2.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Pracovna",
-			        Opis = "Parádna pracovna 2",
-			        Obrazok = "/images/pracovne/pracovna2.jpg",
-			        MaterialID = 3.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        },
-		        new Produkt()
-		        {
-			        Typ = "Pracovna",
-			        Opis = "Parádna pracovna 3",
-			        Obrazok = "/images/pracovne/pracovna3.jpg",
-			        MaterialID = 1.ToString(),
-			        UdajeProduktu = new Udaje()
-			        {
-				        CasVytvorenia = DateTime.Now,
-				        CasPoslednejZmeny = DateTime.Now
-			        }
-
-		        }
-	        };
+	        
 			var plosneMaterialy = new List<Plosny_material>()
 			{
 				new Plosny_material()
@@ -236,9 +91,199 @@ namespace VAII_Semestralka.Data
 				},
 
 			};
+			Random randMat = new Random();
+			var produkty = new List<Produkt>
+			{
+				new Produkt()
+				{
+					Typ = TypProduktu.Kuchyna,
+					Opis = "Parádna kuchyna 1",
+					Obrazok = "/images/Kuchyna/kuchyna.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Kuchyna,
+					Opis = "Parádna kuchyna 2",
+					Obrazok = "/images/Kuchyna/kuchyna2.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Kuchyna,
+					Opis = "Parádna kuchyna 1",
+					Obrazok = "/images/Kuchyna/kuchyna3.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Kuchyna,
+					Opis = "Parádna kuchyna 2",
+					Obrazok = "/images/Kuchyna/kuchyna4.jpg",
+					Plosne_materialy = new  List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Obyvacia_izba,
+					Opis = "Parádna Obyvacia izba  1",
+					Obrazok = "/images/Obyvacia_izba/obyvacia_izba1.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Obyvacia_izba,
+					Opis = "Parádna Obyvacia izba 2",
+					Obrazok = "/images/Obyvacia_izba/obyvacia_izba2.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Obyvacia_izba,
+					Opis = "Parádna Obyvacia izba 3",
+					Obrazok = "/images/Obyvacia_izba/obyvacia_izba3.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Obyvacia_izba,
+					Opis = "Parádna Obyvacia izba 4",
+					Obrazok = "/images/Obyvacia_izba/obyvacia_izba4.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Pracovna,
+					Opis = "Parádna pracovna 1",
+					Obrazok = "/images/Pracovna/pracovna1.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Pracovna,
+					Opis = "Parádna pracovna 2",
+					Obrazok = "/images/Pracovna/pracovna2.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				},
+				new Produkt()
+				{
+					Typ = TypProduktu.Pracovna,
+					Opis = "Parádna pracovna 3",
+					Obrazok = "/images/Pracovna/pracovna3.jpg",
+					Plosne_materialy = new List<Plosny_material>()
+					{
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count)),
+						plosneMaterialy.ElementAt(randMat.Next(0, plosneMaterialy.Count))
+					},
+					UdajeProduktu = new Udaje()
+					{
+						CasVytvorenia = DateTime.Now,
+						CasPoslednejZmeny = DateTime.Now
+					}
+
+				}
+			};
 
 
-			// Přidání produktů do databáze, pokud databáze je prázdná
 			if (!dbContext.Produkty.Any())
 	        {
 		        dbContext.Produkty.AddRange(produkty);

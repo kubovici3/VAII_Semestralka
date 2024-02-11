@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using VAII_Semestralka.Data;
 using VAII_Semestralka.Models;
 
@@ -116,7 +118,7 @@ namespace VAII_Semestralka.Controllers
 			return View(model);
 		}
 
-		[HttpPut]
+		[HttpPost]	//daj na HttpPost ak nebude fungovat put
 		public async Task<IActionResult> SpravaUdajov(UpravaViewModel model)
 		{
 			if (ModelState.IsValid)
@@ -183,8 +185,27 @@ namespace VAII_Semestralka.Controllers
 				return RedirectToAction("Index", "Home");
 			}
 
-
 			return RedirectToAction("SpravaUdajov", "Ucet");
+
+		}
+
+		[HttpPost]
+		public JsonResult ValidaciaRegistracnehoFormulara(RegistraciaViewModel model)
+		{
+			// Validate the model
+			var context = new ValidationContext(model, serviceProvider: null, items: null);
+			var results = new List<ValidationResult>();
+			bool isValid = Validator.TryValidateObject(model, context, results, true);
+
+			// If the model is not valid, return the validation errors
+			if (!isValid)
+			{
+				Debug.WriteLine("Validation errors: " + string.Join(", ", results.Select(r => r.ErrorMessage)));
+				return Json(results.Select(r => new { propertyName = r.MemberNames.First(), errorMessage = r.ErrorMessage }));
+			}
+
+			// If we made it this far, the model is valid
+			return Json(new { isValid = true });
 		}
 	}
 }

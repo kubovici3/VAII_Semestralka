@@ -232,6 +232,9 @@ namespace VAII_Semestralka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProduktId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Typ")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -240,6 +243,8 @@ namespace VAII_Semestralka.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProduktId");
 
                     b.HasIndex("UdajeMaterialuId");
 
@@ -254,10 +259,6 @@ namespace VAII_Semestralka.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("MaterialID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Obrazok")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -266,9 +267,8 @@ namespace VAII_Semestralka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Typ")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Typ")
+                        .HasColumnType("int");
 
                     b.Property<int>("UdajeProduktuId")
                         .HasColumnType("int");
@@ -352,6 +352,10 @@ namespace VAII_Semestralka.Migrations
 
             modelBuilder.Entity("VAII_Semestralka.Models.Plosny_material", b =>
                 {
+                    b.HasOne("VAII_Semestralka.Models.Produkt", null)
+                        .WithMany("Plosne_materialy")
+                        .HasForeignKey("ProduktId");
+
                     b.HasOne("VAII_Semestralka.Models.Udaje", "UdajeMaterialu")
                         .WithMany()
                         .HasForeignKey("UdajeMaterialuId")
@@ -370,6 +374,11 @@ namespace VAII_Semestralka.Migrations
                         .IsRequired();
 
                     b.Navigation("UdajeProduktu");
+                });
+
+            modelBuilder.Entity("VAII_Semestralka.Models.Produkt", b =>
+                {
+                    b.Navigation("Plosne_materialy");
                 });
 #pragma warning restore 612, 618
         }

@@ -29,7 +29,7 @@
 
 </form>
 
-<script>
+<script>     
 	document.getElementById('btnOdstranitUcet').addEventListener('click', function () {
 		var confirmation = confirm('Naozaj chcete odstránit účet?');
 		if (confirmation) {
@@ -40,6 +40,7 @@
 			xmlRequest.onload = function () {
 				if (xmlRequest.status === 200) {
 					alert('Účet bol úspešne odstraneny.');
+					window.location.href = '/';
 				} else {
 					alert('Chyba pri odstranovani účtu: ' + xmlRequest.responseText);
 				}
